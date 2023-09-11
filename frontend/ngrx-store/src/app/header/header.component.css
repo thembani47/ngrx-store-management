@@ -1,0 +1,57 @@
+.header-container {
+    height: 70px;
+    background: orange;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .space {
+    flex-grow: 2
+  }
+   
+  .route-link {
+    color: black;
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  
+  .route-link:hover {
+    color: brown;
+  }
+  
+  .cart-icon {
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+
+/* Color of the navbar BEFORE scroll */
+.navbar-scroll {
+  background-color: #FFC017;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+.total-price {
+  margin-top: 8px;
+  margin-right: 10px;
+  border: solid black;
+}
+
+.navbar-brand {
+  font-size: unset;
+  height: 3.5rem;
+}
+.counter {
+  margin-top: 9px;
+  margin-right: 15px;
+}

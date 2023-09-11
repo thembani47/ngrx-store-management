@@ -1,0 +1,15 @@
+<section class="banners">
+    <div *ngFor="let product of products()">
+      <div>
+        <img src="{{product.image}}">
+      </div>
+      <div class="text-center">
+        <div class="font-weight-bold">{{ product.name }}</div>
+        <div class="">{{ product.description }}</div>
+        <div>{{ product.price | currency: "R" }}</div>
+        <div>
+          <button class="btn btn-secondary" (click)="buyProduct(product)">Add to Cart </button>
+        </div>
+      </div>
+    </div> 
+</section>

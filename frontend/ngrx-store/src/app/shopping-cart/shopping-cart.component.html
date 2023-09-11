@@ -1,0 +1,35 @@
+<div class="mt-4">
+  <div class="text-center">
+    <button class="btn btn-outline-danger" (click)="clearEntries()">REMOVE ALL</button>
+  </div>
+</div>
+<div class="banners">
+    <div *ngFor="let entry of ( cartEntries$ | async )" class="cart-entry">
+      <div>
+        <img src="{{ entry.product.image }}">
+      </div>
+      <div class="text-center">
+        <div class="product-name">
+          {{ entry.product.name }}
+        </div>
+        <div class="count">
+          Quantity: {{ entry.count }}
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+            <div class="col">
+              <button class="btn btn-outline-danger" (click)="less(entry)"> - </button>
+            </div>
+            <div class="col">
+              <button class="btn btn-outline-success" (click)="more(entry)"> + </button>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="space"></div>
+    </div>
+  </div>
