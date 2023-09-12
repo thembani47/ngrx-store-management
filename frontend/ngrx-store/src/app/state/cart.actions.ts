@@ -1,6 +1,11 @@
-import { Product } from '../model/product'; 
-import { createAction, props } from '@ngrx/store';
+import { Product } from '../api';
+import { createAction, createActionGroup, props } from '@ngrx/store';
 
-export const addProduct = createAction('Add Product', props<Product>());
-export const removeProduct = createAction('Remove Product', props<Product>());
-export const clearCart = createAction('Clear Cart');
+export const ProductsActions = createActionGroup({
+    source: 'Products',
+    events: {
+      'Add': props<Product>(),
+      'Remove': props<Product>(),
+      'Clear': props<Number>()
+    },
+  });

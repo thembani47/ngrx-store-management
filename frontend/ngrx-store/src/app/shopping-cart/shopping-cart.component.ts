@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { clearCart } from '../state/cart.actions'; 
-import { addProduct, removeProduct } from '../state/cart.actions'; 
+import { ProductsActions } from '../state/cart.actions';  
 import { ProductGroup, selectGroupedCartEntries } from '../state/cart.selectors'; 
 
 @Component({
@@ -22,15 +21,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   clearEntries () {
-    this.store.dispatch(clearCart());
+    this.store.dispatch(ProductsActions.clear(0));
   }
 
   more(entry: ProductGroup) {
-    this.store.dispatch(addProduct(entry.product));
+    this.store.dispatch(ProductsActions.add(entry.product));
   }
 
   less (entry: ProductGroup) {
-    this.store.dispatch(removeProduct(entry.product));
+    this.store.dispatch(ProductsActions.remove(entry.product));
   }
 
 }

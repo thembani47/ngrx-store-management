@@ -9,8 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { ShopProductsComponent } from './shop-products/shop-products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { TestComponent } from './test/test.component';
 import { ApiModule } from './api';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ApiModule } from './api';
     HeaderComponent,
     ShopProductsComponent,
     ShoppingCartComponent,
-    TestComponent,
+    SignInComponent,
+    SignUpComponent,
     
   ],
   imports: [
@@ -27,6 +30,7 @@ import { ApiModule } from './api';
     StoreModule.forRoot({ cartEntries: cartReducer }, { metaReducers: [ metaReducerLocalStorage ] }),
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [],

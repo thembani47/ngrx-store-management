@@ -1,21 +1,21 @@
-import { Product } from '../model/product'; 
+import { Product } from '../api';
 import { createReducer, on, ActionReducer, INIT, UPDATE } from '@ngrx/store';
-import { addProduct, clearCart, removeProduct } from './cart.actions'; 
+import { ProductsActions } from './cart.actions';
 
 export const intialCartEntries: Product[] = [];
 
 export const cartReducer = createReducer(
   intialCartEntries,
 
-  on(clearCart, _ => [] ),
+  on(ProductsActions.clear, _ => [] ),
 
-  on(addProduct, (entries, product) => {
+  on(ProductsActions.add, (entries, product) => {
     const entriesClone: Product[] = JSON.parse(JSON.stringify(entries));
     entriesClone.push(product);
     return entriesClone;
   }),
 
-  on(removeProduct, (entries, product) => {
+  on(ProductsActions.remove, (entries, product) => {
     const entriesClone: Product[] = JSON.parse(JSON.stringify(entries));
     const found = entriesClone.find(e => e.id == product.id);
     if (found) {

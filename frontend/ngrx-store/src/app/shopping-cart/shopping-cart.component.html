@@ -6,7 +6,7 @@
 <div class="banners">
     <div *ngFor="let entry of ( cartEntries$ | async )" class="cart-entry">
       <div>
-        <img src="{{ entry.product.image }}">
+        <img src="{{ entry.product.imgUrl }}">
       </div>
       <div class="text-center">
         <div class="product-name">

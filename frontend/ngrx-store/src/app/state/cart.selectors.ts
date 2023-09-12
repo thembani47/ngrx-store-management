@@ -1,4 +1,4 @@
-import { Product } from '../model/product'; 
+import { Product } from '../api'; 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface ProductGroup {

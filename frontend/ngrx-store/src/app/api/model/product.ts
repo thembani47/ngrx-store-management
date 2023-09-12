@@ -12,10 +12,10 @@
 
 
 export interface Product { 
-    id?: number;
-    name?: string;
-    description?: string;
-    price?: number;
-    imgUrl?: string;
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    imgUrl: string;
 }
 
