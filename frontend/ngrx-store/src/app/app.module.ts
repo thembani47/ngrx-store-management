@@ -13,6 +13,7 @@ import { ApiModule } from './api';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AuthGuard } from './gurds/auth.gurd';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ShoppingCartComponent,
     SignInComponent,
     SignUpComponent,
+
+    
     
   ],
   imports: [
@@ -30,10 +33,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     StoreModule.forRoot({ cartEntries: cartReducer }, { metaReducers: [ metaReducerLocalStorage ] }),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
     
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

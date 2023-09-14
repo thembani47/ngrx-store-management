@@ -14,15 +14,33 @@ export class HeaderComponent implements OnInit {
   countProducts$: Observable<number>;
   totalPrice$: Observable<number>;
 
+  isRequired: any;
+  
+
   constructor(private store: Store, private router: Router) {
     this.countProducts$ = store.select(selectCountProducts);
     this.totalPrice$ = store.select(selectTotalPrice)
   }
 
+  ngDoCheck(): void {
+    let currentUrl = this.router.url;
+
+    if (currentUrl == '/signin' || currentUrl == '/signup' ) {
+      this.isRequired = false;
+    } else {
+      this.isRequired = true;
+    }
+  }
+
   ngOnInit(): void {
+    
   }
   btnClick =  () => {
     this.router.navigateByUrl('/signup');
-};
+  };
+  logout(){
+    localStorage.removeItem("currentUser");
+    this.router.navigateByUrl('/signin');
+  }
 
 }
