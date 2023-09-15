@@ -4,6 +4,7 @@ import com.tief.tief.dto.LoginDto;
 import com.tief.tief.entity.User;
 import com.tief.tief.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public Optional<User> save(@RequestBody User user) {
         Optional<User> user1 = userService.getByEmail(user.getEmail());
         if (user1.isPresent()){
@@ -32,12 +33,12 @@ public class UserController {
         return userService.save(user);
     }
 
-    @PostMapping("login")
+    @PostMapping(value = "login", produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<User> login(@RequestBody LoginDto user){
         return userService.login(user);
     }
 
-    @GetMapping("all")
+    @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUsers() {
         return userService.all();
     }

@@ -23,7 +23,7 @@ public class ProductController {
         return productService.save(product);
     }
 
-    @GetMapping("all")
+    @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Product> getAllProducts() {
         return productService.all();
     }

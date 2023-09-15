@@ -25,7 +25,11 @@ public class UserService {
     }
     public Optional<User> save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.getPassword());
+        if (user.getEmail().contains("@admin.com")){
+            user.setRole("admin");
+        } else {
+            user.setRole("user");
+        }
         return Optional.of(this.userRepository.save(user));
     }
 
@@ -43,15 +47,21 @@ public class UserService {
             String encodedPassword = user1.get().getPassword();
             Boolean rightPassword = passwordEncoder.matches(password,encodedPassword);
             if (rightPassword){
-                Optional<User> user2 = userRepository.findByEmailAndPassword(user.getPassword(),encodedPassword);
+                Optional<User> user2 = userRepository.findByEmailAndPassword(user.getEmail(),encodedPassword);
                 if (user2.isPresent()){
+
                     return this.userRepository.findByEmail(user.getEmail());
                 }else {
+
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid");
                 }
+            } else {
+                System.out.println("Password not right");
             }
         }
+
         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Invalid");
     }
+
 
 }
