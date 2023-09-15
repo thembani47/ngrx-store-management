@@ -5,6 +5,7 @@ import { ShopProductsComponent } from './shop-products/shop-products.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthGuard } from './gurds/auth.gurd';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'products', component: ShopProductsComponent, canActivate: [AuthGuard]  },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'signin', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: '', component: SignInComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '**', component: ShopProductsComponent }
 ];
 

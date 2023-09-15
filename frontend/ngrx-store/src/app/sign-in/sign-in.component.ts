@@ -45,8 +45,13 @@ export class SignInComponent implements OnInit {
       this.userControllerService.login(this.loginForm.value)
       .pipe(first()).subscribe(
         res => {
-          console.log("res: ",res);
-          this.router.navigate(["/products"]);
+          // console.log("res: ",res);
+          if (res.role === "user"){
+            this.router.navigate(["/products"]);
+          }
+          if (res.role === "admin"){
+            this.router.navigate(["/home"]);
+          }
 
           if (res) {
             localStorage.setItem('currentUser', JSON.stringify(res));
@@ -54,7 +59,7 @@ export class SignInComponent implements OnInit {
           
         },
         error => {
-            alert(error)
+            alert("Invalid Login")
             this.loading = false;
         })
   }

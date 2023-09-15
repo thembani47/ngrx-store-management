@@ -13,15 +13,21 @@
             <!-- Email input -->
             <div class="form-outline mb-4 mt-4">
               <input formControlName="email" type="email" class="form-control form-control-lg"
-                placeholder="Enter email address" />
+                placeholder="Enter email address" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
               <label class="form-label">Email address</label>
+              <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <small>Email is required</small>
+              </div>
             </div>
   
             <!-- Password input -->
             <div class="form-outline mb-3">
               <input formControlName="password" type="password" id="form3Example4" class="form-control form-control-lg"
-                placeholder="Enter password" />
+                placeholder="Enter password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
               <label class="form-label" for="form3Example4">Password</label>
+              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <small>Password is required</small>
+              </div>
             </div>
   
             <div class="d-flex justify-content-between align-items-center">
@@ -36,7 +42,7 @@
             </div>
   
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button (click)="onSubmit()" type="button" class="btn btn-primary btn-lg"
+              <button (click)="onSubmit()" type="button" [disabled]="loading" class="btn btn-primary btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
               <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/signup"
                   class="link-danger">Register</a></p>

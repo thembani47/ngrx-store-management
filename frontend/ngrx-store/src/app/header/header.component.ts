@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+[x: string]: any;
 
   countProducts$: Observable<number>;
   totalPrice$: Observable<number>;
 
-  isRequired: any;
+  isRequired: boolean = false;
   
 
   constructor(private store: Store, private router: Router) {
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   ngDoCheck(): void {
     let currentUrl = this.router.url;
-
+    
     if (currentUrl == '/signin' || currentUrl == '/signup' ) {
       this.isRequired = false;
     } else {
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.getUserRole();
+    console.log('admin: ', this.getUserRole());
   }
   btnClick =  () => {
     this.router.navigateByUrl('/signup');
@@ -43,4 +45,18 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/signin');
   }
 
+  getUser() {
+    let user = localStorage.getItem('currentUser')
+    if (user !== null) {
+      return JSON.parse(user);
+    } else {
+      return null;
+    }
+  }
+
+  getUserRole(){
+    let user = this.getUser();
+    return user.role;
+  }
+  
 }

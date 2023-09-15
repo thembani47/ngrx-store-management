@@ -19,16 +19,16 @@
     </button>
     <div *ngIf="isRequired" class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
-        <li class="mt-2">
+        <li class="mt-2" *ngIf="getUserRole() !== 'admin'">
           <a routerLink="/products" class="route-link">Shop</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="getUserRole() !== 'admin'">
           <a routerLink="/cart"><button class="btn btn-info mt-1 ms"><i class="bi bi-cart"></i></button></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="getUserRole() !== 'admin'">
           <div class="counter">:{{ countProducts$ | async | number }}</div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="getUserRole() !== 'admin'">
           <div class="total-price">Total Price: {{ totalPrice$ | async | currency : 'R'}}</div>
         </li>
         <div *ngIf="!isRequired">
@@ -37,7 +37,9 @@
           </li>
           <button type="button" class="btn btn-dark ms-3" (click)="btnClick()">Sign up for free</button>
         </div>
-        <button type="button" class="btn btn-dark ms-3" (click)="logout()">logout</button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button type="button" class="btn btn-dark ms-3" (click)="logout()">logout</button>
+        </div>
       </ul>
     </div>
   </div>
